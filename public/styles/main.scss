@@ -51,7 +51,7 @@
 }
 
 body {
-  min-height: 100vh;
+  min-height: 80vh;
 
   display: flex;
   align-items: center;
@@ -370,5 +370,11 @@ body {
         border-bottom: 3px solid var(--theme3-key-cyan-shadow) !important;
       }
     }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  body {
+    min-height: 100vh;
   }
 }

@@ -40,7 +40,7 @@
 }
 
 body {
-  min-height: 100vh;
+  min-height: 80vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -362,5 +362,11 @@ body .calculator-keys .row:last-child .key {
   background-color: var(--theme3-key-cyan) !important;
   color: var(--theme3-text-2) !important;
   border-bottom: 3px solid var(--theme3-key-cyan-shadow) !important;
+}
+
+@media screen and (min-width: 600px) {
+  body {
+    min-height: 100vh;
+  }
 }
 /*# sourceMappingURL=main.css.map */
