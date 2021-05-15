@@ -4,23 +4,74 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="shortcut icon" href="./assets/favicon-32x32.png">
   
   <title>Frontend Mentor | Calculator app</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@700&display=swap" rel="stylesheet">  
+
+  <link rel="stylesheet" href="./styles/main.css" />
+
 </head>
-<body>
+<body class="theme theme-1">
+  <main>
+    <div class="theme-container">
+      <h4 class="calc-name">calc</h4>
 
+      <div class="theme-content">
+        <h5 class="theme-slider-name">Theme</h5>
 
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
+        <section class="theme-changer">
+          <span class="theme-scale">
+            <h5 class="theme-number">1</h5>
+            <h5 class="theme-number">2</h5>
+            <h5 class="theme-number">3</h5>
+          </span>
+
+          <span class="theme-slider"></span>
+        </section>
+      </div>
+    </div>
+
+    <div class="screen-container">399,981</div>
+
+    <div class="calculator-keys">
+      <section class="row">
+        <div class="key">7</div>
+        <div class="key">8</div>
+        <div class="key">9</div>
+        <div class="key delete">DEL</div>
+      </section>
+
+      <section class="row">
+        <div class="key">4</div>
+        <div class="key">5</div>
+        <div class="key">6</div>
+        <div class="key">+</div>
+      </section>
+
+      <section class="row">
+        <div class="key">1</div>
+        <div class="key">2</div>
+        <div class="key">3</div>
+        <div class="key">-</div>
+      </section>
+
+      <section class="row">
+        <div class="key">.</div>
+        <div class="key">0</div>
+        <div class="key">/</div>
+        <div class="key">x</div>
+      </section>
+
+      <section class="row">
+        <div class="key delete">Reset</div>
+        <div class="key enter">=</div>
+      </section>
+    </div>
+  </main>
+
+  <script src="./theme.js"></script>
 </body>
 </html>

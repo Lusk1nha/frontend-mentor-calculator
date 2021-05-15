@@ -1,0 +1,366 @@
+:root {
+  --theme1-main-bg: hsl(222, 26%, 31%);
+  --theme1-toggle-bg: hsl(223, 31%, 20%);
+  --theme1-screen-bg: hsl(224, 36%, 15%);
+  --theme1-key-bg: hsl(225, 21%, 49%);
+  --theme1-key-shadow: hsl(224, 28%, 35%);
+  --theme1-key-red: hsl(6, 63%, 50%);
+  --theme1-key-red-shadow: hsl(6, 70%, 34%);
+  --theme1-key-grayish: hsl(30, 25%, 89%);
+  --theme1-key-grayish-shadow: hsl(28, 16%, 65%);
+  --theme1-text: hsl(221, 14%, 31%);
+  --theme2-main-bg: hsl(0, 0%, 90%);
+  --theme2-toggle-bg: hsl(0, 5%, 81%);
+  --theme2-screen-bg: hsl(0, 0%, 93%);
+  --theme2-key-bg: hsl(185, 42%, 37%);
+  --theme2-key-shadow: hsl(185, 58%, 25%);
+  --theme2-key-orange: hsl(25, 98%, 40%);
+  --theme2-key-orange-shadow: hsl(25, 99%, 27%);
+  --theme2-key-grayish: hsl(45, 7%, 89%);
+  --theme2-key-grayish-shadow: hsl(35, 11%, 61%);
+  --theme2-text: hsl(60, 10%, 19%);
+  --theme3-main-bg: hsl(268, 75%, 9%);
+  --theme3-toggle-screen-bg: hsl(268, 71%, 12%);
+  --theme3-key-bg: hsl(281, 89%, 26%);
+  --theme3-key-shadow: hsl(285, 91%, 52%);
+  --theme3-key-cyan: hsl(176, 100%, 44%);
+  --theme3-key-cyan-shadow: hsl(177, 92%, 70%);
+  --theme3-key-violet: hsl(268, 47%, 21%);
+  --theme3-key-violet-shadow: hsl(290, 70%, 36%);
+  --theme3-text-1: hsl(52, 100%, 62%);
+  --theme3-text-2: hsl(198, 20%, 13%);
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Spartan", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 1rem;
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+body main {
+  max-width: 350px;
+  min-width: 300px;
+  width: 90%;
+}
+
+body .theme-container {
+  width: 100%;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+body .theme-container .calc-name {
+  font-size: 1.8rem;
+}
+
+body .theme-container .theme-content {
+  width: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body .theme-container .theme-content .theme-slider-name {
+  height: 100%;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03rem;
+  margin-right: 1rem;
+}
+
+body .theme-container .theme-content .theme-changer {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body .theme-container .theme-content .theme-changer .theme-scale {
+  width: 70%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 0.2rem;
+}
+
+body .theme-container .theme-content .theme-changer .theme-slider {
+  width: 100%;
+  height: 30px;
+  position: relative;
+  padding: 0 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+body .theme-container .theme-content .theme-changer .theme-slider::before {
+  content: '';
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  border-radius: 50%;
+  -webkit-transform: translate(-50%, 50%);
+          transform: translate(-50%, 50%);
+}
+
+body .screen-container {
+  width: 100%;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  font-size: 1.875rem;
+  font-weight: bold;
+  padding: 0 1.4rem;
+  margin-bottom: 1rem;
+  border-radius: 0.75rem;
+}
+
+body .calculator-keys {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.75rem;
+}
+
+body .calculator-keys .row {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+body .calculator-keys .row .key {
+  background-color: black;
+  width: 60px;
+  height: 55px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 1.40rem;
+  position: relative;
+  margin: 0.35rem;
+  margin-bottom: 0.40rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+
+body .calculator-keys .row .key:hover {
+  opacity: 70%;
+}
+
+body .calculator-keys .row .key.delete {
+  font-size: 0.875em;
+  text-transform: uppercase;
+}
+
+body .calculator-keys .row .key.enter {
+  font-size: 1rem;
+}
+
+body .calculator-keys .row:last-child .key {
+  width: 50%;
+}
+
+.theme-1 {
+  background-color: var(--theme1-main-bg);
+}
+
+.theme-1 .theme-container {
+  color: white;
+}
+
+.theme-1 .theme-container .theme-slider {
+  background-color: var(--theme1-toggle-bg) !important;
+}
+
+.theme-1 .theme-container .theme-slider::before {
+  background-color: var(--theme1-key-red) !important;
+}
+
+.theme-1 .screen-container {
+  background-color: var(--theme1-screen-bg) !important;
+  color: white;
+}
+
+.theme-1 .calculator-keys {
+  background-color: var(--theme1-toggle-bg);
+}
+
+.theme-1 .calculator-keys .key {
+  background-color: var(--theme1-key-grayish) !important;
+  color: var(--theme1-key-shadow) !important;
+  border-bottom: 3px solid var(--theme1-key-grayish-shadow) !important;
+}
+
+.theme-1 .calculator-keys .key.delete {
+  background-color: var(--theme1-key-bg) !important;
+  color: var(--theme1-key-grayish) !important;
+  border-bottom: 3px solid var(--theme1-key-shadow) !important;
+}
+
+.theme-1 .calculator-keys .key.enter {
+  background-color: var(--theme1-key-red) !important;
+  color: var(--theme1-key-grayish) !important;
+  border-bottom: 3px solid var(--theme1-key-red-shadow) !important;
+}
+
+.theme-2 {
+  background-color: var(--theme2-main-bg);
+}
+
+.theme-2 .theme-container {
+  color: var(--theme2-text);
+}
+
+.theme-2 .theme-container .theme-slider {
+  background-color: var(--theme2-toggle-bg) !important;
+}
+
+.theme-2 .theme-container .theme-slider::before {
+  background-color: var(--theme2-key-orange) !important;
+  -webkit-transform: translate(120%, 50%) !important;
+          transform: translate(120%, 50%) !important;
+}
+
+.theme-2 .screen-container {
+  background-color: var(--theme2-screen-bg) !important;
+  color: var(--theme2-text);
+}
+
+.theme-2 .calculator-keys {
+  background-color: var(--theme2-toggle-bg);
+}
+
+.theme-2 .calculator-keys .key {
+  background-color: var(--theme2-key-grayish) !important;
+  color: var(--theme2-text) !important;
+  border-bottom: 3px solid var(--theme2-key-grayish-shadow) !important;
+}
+
+.theme-2 .calculator-keys .key.delete {
+  background-color: var(--theme2-key-bg) !important;
+  color: var(--theme2-key-grayish) !important;
+  border-bottom: 3px solid var(--theme2-key-shadow) !important;
+}
+
+.theme-2 .calculator-keys .key.enter {
+  background-color: var(--theme2-key-orange) !important;
+  color: var(--theme2-key-grayish) !important;
+  border-bottom: 3px solid var(--theme2-key-orange-shadow) !important;
+}
+
+.theme-3 {
+  background-color: var(--theme3-main-bg);
+}
+
+.theme-3 .theme-container {
+  color: var(--theme3-text-1);
+}
+
+.theme-3 .theme-container .theme-slider {
+  background-color: var(--theme3-toggle-screen-bg) !important;
+}
+
+.theme-3 .theme-container .theme-slider::before {
+  background-color: var(--theme3-key-cyan) !important;
+  -webkit-transform: translate(300%, 50%) !important;
+          transform: translate(300%, 50%) !important;
+}
+
+.theme-3 .screen-container {
+  background-color: var(--theme3-toggle-screen-bg) !important;
+  color: var(--theme3-text-1);
+}
+
+.theme-3 .calculator-keys {
+  background-color: var(--theme3-toggle-screen-bg) !important;
+}
+
+.theme-3 .calculator-keys .key {
+  background-color: var(--theme3-key-violet) !important;
+  color: var(--theme3-text-1) !important;
+  border-bottom: 3px solid var(--theme3-key-violet-shadow) !important;
+}
+
+.theme-3 .calculator-keys .key.delete {
+  background-color: var(--theme3-key-bg) !important;
+  color: white !important;
+  border-bottom: 3px solid var(--theme3-key-shadow) !important;
+}
+
+.theme-3 .calculator-keys .key.enter {
+  background-color: var(--theme3-key-cyan) !important;
+  color: var(--theme3-text-2) !important;
+  border-bottom: 3px solid var(--theme3-key-cyan-shadow) !important;
+}
+/*# sourceMappingURL=main.css.map */
