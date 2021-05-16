@@ -1,14 +1,11 @@
-const themeSlider = document.querySelector('.theme-slider')
+const themeNumber = document.querySelectorAll('.theme-number')
+const body = document.body
 
-let sliderCount = 1
+themeNumber.forEach(theme => {
+  theme.addEventListener('click', () => {
+    const themeValue = theme.innerHTML
 
-themeSlider.addEventListener('click', () => {
-  const body = document.body
-
-  sliderCount++
-  
-  if ( sliderCount == 4 ) sliderCount = 1
-  
-  body.classList = ''
-  body.classList.add(`theme-${sliderCount}`)
+    body.classList = ''
+    body.classList.add(`theme-${themeValue}`)
+  })
 })
