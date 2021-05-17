@@ -108,6 +108,8 @@ function insertEnter() {
 
   Output.value = result
   completeAccount = result
+
+  checkingForDots()
 }
 
 function deleteAccount() {
@@ -144,4 +146,12 @@ function resetCalculator() {
 
   operatorAvailable = false
   dotCount = 0
+}
+
+function checkingForDots() {
+  const anyDot = (Output.value.split('')).filter(item => item == '.')
+
+  if ( anyDot.length ) {
+    dotCount = 1
+  }
 }
