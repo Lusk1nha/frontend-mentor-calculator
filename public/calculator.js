@@ -1,133 +1,147 @@
 const Numbers = document.querySelectorAll('.key.number')
+const Dot = document.querySelector('.key.dot')
+
 const Operators = document.querySelectorAll('.key.operator')
 const Delete = document.querySelector('.key.delete')
 const Reset = document.querySelector('.key.reset')
 const Enter = document.querySelector('.key.enter')
 
-const screen = document.querySelector('.screen-container')
+const Output = document.querySelector('.screen-container')
+const previousAccount = document.querySelector('.previous-account')
 
-let firstAccount = ''
-let operatorAccount = ''
-let secondAccount = ''
-
-let operatorActive = false
 let completeAccount = ''
+let dotCount = 0
+
+let operatorAvailable = false
 
 Numbers.forEach(number => {
   number.addEventListener('click', insertNumber)
-});
+})
 
 Operators.forEach(operator => {
   operator.addEventListener('click', insertOperator)
 })
 
-Delete.addEventListener('click', pressDelete)
+Dot.addEventListener('click', insertDot)
 
-Reset.addEventListener('click', pressReset)
+Enter.addEventListener('click', insertEnter)
 
-Enter.addEventListener('click', pressEnter)
+Delete.addEventListener('click', deleteAccount)
+
+Reset.addEventListener('click', resetCalculator)
 
 function insertNumber() {
   const number = this.innerHTML
 
-  if (numberError(number)) return
+  if ( completeAccount.length == 1 && completeAccount == '0' ) {
+    Output.value = ''
+    completeAccount = ''
 
-  screen.value += number
+    operatorAvailable = false
+  }
+
+  Output.value += number
+  Output.placeholder = '0'
   completeAccount += number
 
-  function numberError() {
-    if ( firstAccount == '' && number == 0 || firstAccount == '' && number == '.' ) {
-      return true
-    }
+  operatorAvailable = true
+}
 
-    if ( !operatorActive && firstAccount.length > 8 ) return true
-    else if ( secondAccount.length > 8 ) return true
+function insertDot() {
+  if ( !operatorAvailable && dotCount == 0 ) {
+    Output.value += '0.'
+    completeAccount += '0.'
 
-    if ( !operatorActive ) {
-      firstAccount += number
-      return false
-    }
+    dotCount++
+  }
 
-    if ( secondAccount == '' && number == '.' ) {
-      return true
-    }
+  const accountArray = completeAccount.split('')
+  const accountSpliced = accountArray.splice(-1, 1)
 
-    secondAccount += number
-    return false
+  if ( dotCount == 0 && accountSpliced[0] != '+' && accountSpliced[0] != '-' ) {
+    Output.value += '.'
+    completeAccount += '.'
+
+    dotCount++
   }
 }
 
 function insertOperator() {
-  let operator = this.innerHTML
+  const operator = this.innerHTML
 
-  if ( operatorError() ) return true
-
-  if ( !firstAccount && operator == '-' ) {
-    firstAccount += '-'
-    return completeAccount += '-'
-  }
-
-  operatorActive = true
-  operatorAccount = operator
-  return completeAccount += operator
-
-  function operatorError() {
-    if ( !firstAccount && operator != '-' ) return true
-    if ( operatorAccount ) return true
-
-    screen.value += operator
+  if ( completeAccount.length > 0 ) {
+    if ( operatorAvailable ) {
+      if ( operator == 'x' ) {
+        completeAccount += '*'
+      } else {
+        completeAccount += operator
+      }
   
-    if ( operator == 'x' ) operator = '*'
-  }
-}
-
-function pressEnter() {
-  if ( !firstAccount || !secondAccount ) return
-
-  let result = eval(completeAccount).toString()
-  if ( result == 0 ) result = ''
-
-  completeAccount = result
-  screen.value = result
-
-  firstAccount = result
-  operatorAccount = ''
-  secondAccount = ''
-
-}
-
-function pressDelete() {
-  const defaultValue = screen.value.split('')
-  defaultValue.pop()
-
-  if ( secondAccount != '' ) {
-    secondAccount = secondAccount.slice(0, -1)
-
-  } else {
-    if ( operatorActive ) {
-      operatorActive = false
-      operatorAccount = ''
-
-    } else {
-      if ( firstAccount != '' ) {
-        firstAccount = firstAccount.slice(0, -1)
-
-      } else return
+      Output.value += operator
+      dotCount = 0
     }
+  
+    operatorAvailable = false
   }
-
-  screen.value = defaultValue.join('')
-  completeAccount = defaultValue.join('')
-  return
 }
 
-function pressReset() {
+function insertEnter() {
+  const accountArray = completeAccount.split('')
+  const accountSpliced = accountArray.splice(-1, 1)
+  
+  if ( 
+    accountSpliced == '*' || accountSpliced == '+' || 
+    accountSpliced == '-' || accountSpliced == '/') {
+      completeAccount = ''
+      Output.value = ''
+      return previousAccount.innerHTML = 'This account is unavailable'
+    }
+    
+  previousAccount.innerHTML = Output.value
+  const result = String(eval(completeAccount))
+
+  if ( result == Infinity || result == NaN ) {
+    completeAccount = ''
+    Output.value = ''
+    return previousAccount.innerHTML = 'This account is unavailable'
+  }
+
+  Output.value = result
+  completeAccount = result
+}
+
+function deleteAccount() {
+  if ( completeAccount.length > 0 ) {
+    const accountArray = completeAccount.split('')
+    const accountSlice = completeAccount.slice(0, -1)
+    const lastChar = accountArray.splice(-1, 1)
+
+    if ( completeAccount.length == 1 && lastChar == '0' ) {
+      Output.value = ''
+      completeAccount = ''
+
+      dotCount = 0
+      operatorAvailable = false
+    }
+
+    if ( lastChar == '.' ) dotCount = 0
+
+    if (lastChar == '*' || lastChar == '+' || 
+    lastChar == '-' || lastChar == '/') {
+      operatorAvailable = true
+    }
+  
+    Output.value = accountSlice
+    completeAccount = accountSlice
+  }
+}
+
+function resetCalculator() {
   completeAccount = ''
-  screen.value = ''
+  previousAccount.innerHTML = ''
+  Output.value = ''
+  Output.placeholder = 0
 
-  firstAccount = ''
-  operatorAccount = ''
-  secondAccount = ''
-
-  operatorActive = false
+  operatorAvailable = false
+  dotCount = 0
 }
