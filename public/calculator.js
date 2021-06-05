@@ -88,14 +88,8 @@ function insertOperator() {
 function insertEnter() {
   const accountArray = completeAccount.split('')
   const accountSpliced = accountArray.splice(-1, 1)
-  
-  if ( 
-    accountSpliced == '*' || accountSpliced == '+' || 
-    accountSpliced == '-' || accountSpliced == '/') {
-      completeAccount = ''
-      Output.value = ''
-      return previousAccount.innerHTML = 'This account is unavailable'
-    }
+
+  if (['*', '+', '-', '/'].includes(accountSpliced[0])) return
     
   previousAccount.innerHTML = Output.value
   const result = String(eval(completeAccount))
@@ -128,8 +122,8 @@ function deleteAccount() {
 
     if ( lastChar == '.' ) dotCount = 0
 
-    if (lastChar == '*' || lastChar == '+' || 
-    lastChar == '-' || lastChar == '/') {
+    
+    if (['*', '+', '-', '/'].includes(lastChar[0])) {
       operatorAvailable = true
     }
   
